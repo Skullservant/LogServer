@@ -41,7 +41,7 @@ def start_to_start_durations(logs):
 def layout():
 
 	"""
-		bief: updates the layout of the website when it gets refreshed
+		bief: updates the layout of the website when refreshed
 		return: the new layout
 	"""
 	return html.Div([

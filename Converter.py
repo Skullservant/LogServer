@@ -17,7 +17,7 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 def layout():
 
 	"""
-		bief: updates the layout of the website when it gets refreshed
+		bief: updates the layout of the website when refreshed
 		return: the new layout
 	"""
 
