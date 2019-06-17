@@ -16,8 +16,8 @@ Dependencies
   - [pandas](https://pandas.pydata.org/pandas-docs/stable/install.html): Among other things, allows easy access to local or online CSV files, go to the linked page for intallation instructions
   - [hug](http://www.hug.rest/website/quickstart): Allows easy setup of basic non-specialized servers, go to the linked page for intallation instructions
 
-Utilization:
--------------
+Utilization
+------------
 
 Listener.py
 ------------
