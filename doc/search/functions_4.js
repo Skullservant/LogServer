@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['names',['names',['../classDatabaseManagers_1_1CSVDatabaseManager.html#a43844de7215f9dd30610aa5e4bcf46a5',1,'DatabaseManagers.CSVDatabaseManager.names()'],['../classDatabaseManagers_1_1MainDatabaseManager.html#adbf24dc3050f107044bebffd589fc54e',1,'DatabaseManagers.MainDatabaseManager.names()']]]
+  ['layout',['layout',['../namespaceConverter.html#a0de60f72a9dd28c6e0c65836ceaae84b',1,'Converter.layout()'],['../namespaceEmitter.html#a7acbde9ff0d2afab49f5855ba881a5ad',1,'Emitter.layout()']]]
 ];

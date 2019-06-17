@@ -33,10 +33,14 @@ Converter.py
 
 
 Emitter.py
-----------
+-----------
 
 	Launch: python Emiter.py
 	Access: /IP:8050/
+
+Generate Mock Data For The Data Visualization Interface (Emitter.py)
+---------------------------------------------------------------------
+	Use TestSetup.py
 
 
 

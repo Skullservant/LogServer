@@ -6,6 +6,7 @@ import plotly.graph_objs as go
 from DatabaseManagers import MainDatabaseManager
 import numpy as np
 
+db=MainDatabaseManager()
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
@@ -37,151 +38,151 @@ def start_to_start_durations(logs):
 
 '''initialization of the layout: front-end implementation'''
 
-db=MainDatabaseManager()
-games=db.read('Game', [], [])
-users=db.read('User', [], [])
-robots_pos=np.unique(db.read('Position', [], ['robot_id']))
-robots_events=np.unique(np.append(db.read('DiscreteEvent', [], ['robot_id']), db.read('ContinuousEvent', [], ['robot_id'])))
-iters_pos=np.unique(db.read('Position', [], ['iter']))
-iters_events=np.unique(np.append(db.read('DiscreteEvent', [], ['iter']), db.read('ContinuousEvent', [], ['iter'])))
+def layout():
 
-app.layout =  html.Div([
-	dcc.Markdown('''POSITION ANALYSIS:'''),
-	dcc.Markdown('''Position Analysis Global Optional Arguments: Restrictions (Default=All Are Authorized):'''),
-	dcc.Markdown('''Authorized Robot Ids:'''),
-	dcc.Dropdown(
-        	id='auth_bot',
-		options= [{'label':i, 'value':i} for i in robots_pos],
-		multi=True,
-		value=[]
-        ),
-	dcc.Markdown('''Authorized Games:'''),
-	dcc.Dropdown(
-        	id='auth_game',
-		options= [{'label':i[1], 'value':i[0]} for i in games],
-		multi=True,
-		value=[]
-        ),
-	dcc.Markdown('''Authorized Users:'''),
-	dcc.Dropdown(
-        	id='auth_user',
-		options= [{'label':i[1], 'value':i[0]} for i in users],
-		multi=True,
-		value=[]
-        ),
-	dcc.Markdown('''Authorized Iterations:'''),
-	dcc.Dropdown(
-        	id='auth_iter',
-		options= [{'label':i, 'value':str(i)} for i in iters_pos],
-		multi=True,
-		value=[]
-        ),
-	dcc.Markdown('''Trajectory Analysis:'''),
-	dcc.Markdown('''Optional Arguments:'''),
-	dcc.Markdown('''Source Of The Background Image:'''),
-	dcc.Textarea(
-    		placeholder='https://...',
-    		style={'width': '100%'},
-		id='image'
-	),
-	dcc.Input(
-		id='image_x',
-    		placeholder='X-Axis Length',
-    		type='number',
-		min=0
-	),
-	dcc.Input(
-		id='image_y',
-    		placeholder='Y-Axis Length',
-    		type='number',
-		min=0
-	),
-	html.Button('Draw The Trajectory', id='draw_button',n_clicks=0),
-	dcc.Graph(id='pos_graph'),
-	dcc.Markdown('''Position Analysis:'''),
-	dcc.Markdown('''Compulsory Arguments:'''),
-	dcc.Input(
-		id='heat_x_div',
-    		placeholder='X-Axis Boxes',
-		type='number',
-		min=1
-	),
-	dcc.Input(
-		id='heat_y_div',
-    		placeholder='Y-axis boxes',
-    		type='number',
-		min=1
-	),
-	dcc.Markdown('''Optional Arguments:'''),
-	dcc.Input(
-		id='heat_x_min',
-    		placeholder='X-axis min value',
-    		type='number'
-	),
-	dcc.Input(
-		id='heat_x_max',
-    		placeholder='X-axis max value',
-    		type='number'
-	),
-	dcc.Input(
-		id='heat_y_min',
-    		placeholder='Y-axis min value',
-    		type='number'
-	),
-	dcc.Input(
-		id='heat_y_max',
-    		placeholder='Y-axis max value',
-    		type='number'
-	),
-	html.Button('Display Heat Map', id='cut_button',n_clicks=0),
-	dcc.Markdown(id='heat_text'),
-	dcc.Graph(
-    		style={'height': 600},
-    		id='heat_map'
-	),
-	dcc.Markdown('''EVENTS ANALYSIS:'''),
-	dcc.Markdown('''Events Analysis Compulsory Arguments:'''),
-	dcc.Markdown('''Robot Id:'''),
-	dcc.Dropdown(
-        	id='selected_bot',
-		options= [{'label':i, 'value':i} for i in robots_events]
-        ),
-	dcc.Markdown('''Game:'''),
-	dcc.Dropdown(
-        	id='selected_game',
-		options= [{'label':i[1], 'value':i[0]} for i in games]
-        ),
-	dcc.Markdown('''User:'''),
-	dcc.Dropdown(
-        	id='selected_user',
-		options= [{'label':i[1], 'value':i[0]} for i in users]
-        ),
-	dcc.Markdown('''Iteration:'''),
-	dcc.Dropdown(
-        	id='selected_iter',
-		options= [{'label':i, 'value':i} for i in iters_events]
-        ),
-	dcc.Markdown('''Events Analysis Optional Arguments:'''),
-	dcc.Markdown('''Zone:'''),
-	dcc.Dropdown(
-        	id='auth_zone',
-		disabled=True
-        ),
-	html.Button('Visualize Event Data', id='analyse_button',n_clicks=0),
-	dcc.Markdown(children='',id='event_num_analysis'),
-	dcc.Graph(
-    		id='kidnap_graph'
-	),
-	dcc.Graph(
-    		id='border_graph'
-	),
-	dcc.Graph(
-    		id='inner_graph'
-	),
-	dcc.Graph(
-    		id='distance_graph'
-	)		
-])
+	"""
+		bief: updates the layout of the website when it gets refreshed
+		return: the new layout
+	"""
+	return html.Div([
+		dcc.Markdown('''POSITION ANALYSIS:'''),
+		dcc.Markdown('''Position Analysis Global Optional Arguments: Restrictions (Default=All Are Authorized):'''),
+		dcc.Markdown('''Authorized Robot Ids:'''),
+		dcc.Dropdown(
+        		id='auth_bot',
+			options= [{'label':i, 'value':i} for i in np.unique(db.read('Position', [], ['robot_id']))],
+			multi=True,
+			value=[]
+        	),
+		dcc.Markdown('''Authorized Games:'''),
+		dcc.Dropdown(
+        		id='auth_game',
+			options= [{'label':i[1], 'value':i[0]} for i in db.read('Game', [], [])],
+			multi=True,
+			value=[]
+        	),
+		dcc.Markdown('''Authorized Users:'''),
+		dcc.Dropdown(
+        		id='auth_user',
+			options= [{'label':i[1], 'value':i[0]} for i in db.read('User', [], [])],
+			multi=True,
+			value=[]
+        	),
+		dcc.Markdown('''Authorized Iterations:'''),
+		dcc.Dropdown(
+        		id='auth_iter',
+			options= [{'label':i, 'value':str(i)} for i in np.unique(db.read('Position', [], ['iter']))],
+			multi=True,
+			value=[]
+        	),
+		dcc.Markdown('''Trajectory Analysis:'''),
+		dcc.Markdown('''Optional Arguments:'''),
+		dcc.Markdown('''Source Of The Background Image:'''),
+		dcc.Textarea(
+    			placeholder='https://...',
+    			style={'width': '100%'},
+			id='image'
+		),
+		dcc.Input(
+			id='image_x',
+    			placeholder='X-Axis Length',
+    			type='number',
+			min=0
+		),
+		dcc.Input(
+			id='image_y',
+    			placeholder='Y-Axis Length',
+    			type='number',
+			min=0
+		),
+		html.Button('Draw The Trajectory', id='draw_button',n_clicks=0),
+		dcc.Graph(id='pos_graph'),
+		dcc.Markdown('''Position Analysis:'''),
+		dcc.Markdown('''Compulsory Arguments:'''),
+		dcc.Input(
+			id='heat_x_div',
+    			placeholder='X-Axis Boxes',
+			type='number',
+			min=1
+		),
+		dcc.Input(
+			id='heat_y_div',
+    			placeholder='Y-axis boxes',
+    			type='number',
+			min=1
+		),
+		dcc.Markdown('''Optional Arguments:'''),
+		dcc.Input(
+			id='heat_x_min',
+    			placeholder='X-axis min value',
+    			type='number'
+		),
+		dcc.Input(
+			id='heat_x_max',
+    			placeholder='X-axis max value',
+    			type='number'
+		),
+		dcc.Input(
+			id='heat_y_min',
+    			placeholder='Y-axis min value',
+    			type='number'
+		),
+		dcc.Input(
+			id='heat_y_max',
+    			placeholder='Y-axis max value',
+    			type='number'
+		),
+		html.Button('Display Heat Map', id='cut_button',n_clicks=0),
+		dcc.Markdown(id='heat_text'),
+		dcc.Graph(
+    			style={'height': 600},
+    			id='heat_map'
+		),
+		dcc.Markdown('''EVENTS ANALYSIS:'''),
+		dcc.Markdown('''Events Analysis Compulsory Arguments:'''),
+		dcc.Markdown('''Robot Id:'''),
+		dcc.Dropdown(
+        		id='selected_bot',
+			options= [{'label':i, 'value':i} for i in np.unique(np.append(db.read('DiscreteEvent', [], ['robot_id']), db.read('ContinuousEvent', [], ['robot_id'])))]
+        	),
+		dcc.Markdown('''Game:'''),
+		dcc.Dropdown(
+        		id='selected_game',
+			options= [{'label':i[1], 'value':i[0]} for i in db.read('Game', [], [])]
+        	),
+		dcc.Markdown('''User:'''),
+		dcc.Dropdown(
+        		id='selected_user',
+			options= [{'label':i[1], 'value':i[0]} for i in db.read('User', [], [])]
+        	),
+		dcc.Markdown('''Iteration:'''),
+		dcc.Dropdown(
+        		id='selected_iter',
+			options= [{'label':i, 'value':i} for i in np.append(db.read('DiscreteEvent', [], ['iter']), db.read('ContinuousEvent', [], ['iter']))]
+        	),
+		dcc.Markdown('''Events Analysis Optional Arguments:'''),
+		dcc.Markdown('''Zone:'''),
+		dcc.Dropdown(
+        		id='auth_zone',
+			disabled=True
+        	),
+		html.Button('Visualize Event Data', id='analyse_button',n_clicks=0),
+		dcc.Markdown(children='',id='event_num_analysis'),
+		dcc.Graph(
+    			id='kidnap_graph'
+		),
+		dcc.Graph(
+    			id='border_graph'
+		),
+		dcc.Graph(
+    			id='inner_graph'
+		),
+		dcc.Graph(
+    			id='distance_graph'
+		)		
+	])
+
+app.layout = layout
 
 '''callbacks: back-end implementation'''
 

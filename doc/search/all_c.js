@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['read',['read',['../classDatabaseManagers_1_1CSVDatabaseManager.html#a81ffdfa68ab1f7bb7a109624af9ea284',1,'DatabaseManagers.CSVDatabaseManager.read()'],['../classDatabaseManagers_1_1MainDatabaseManager.html#a0bb417ad9f0504885d456a14c2a37404',1,'DatabaseManagers.MainDatabaseManager.read()']]],
-  ['readme_2emd',['README.md',['../README_8md.html',1,'']]],
-  ['reset_5fdrop_5fval',['reset_drop_val',['../namespaceConverter.html#a93378ee7854f8cfdb5fad0f9614225c6',1,'Converter']]],
-  ['reset_5fzones_5fval',['reset_zones_val',['../namespaceEmitter.html#abf4e4a18bbb96042b2ac2514432dd662',1,'Emitter']]]
+  ['n',['N',['../namespaceTestSetup.html#a7c117f9da176db2f8080d383867f328c',1,'TestSetup']]],
+  ['names',['names',['../classDatabaseManagers_1_1CSVDatabaseManager.html#a43844de7215f9dd30610aa5e4bcf46a5',1,'DatabaseManagers.CSVDatabaseManager.names()'],['../classDatabaseManagers_1_1MainDatabaseManager.html#adbf24dc3050f107044bebffd589fc54e',1,'DatabaseManagers.MainDatabaseManager.names()']]]
 ];

@@ -17,7 +17,6 @@ class CSVDatabaseManager:
 		self.path=os.path.dirname(os.path.abspath(__file__))+name
 		if not os.path.exists(self.path):
     			os.mkdir(self.path)
-		self.names=self.names()
 
 	def names(self):
 
@@ -47,11 +46,10 @@ class CSVDatabaseManager:
 			f= open(self.path+'/'+name, "a")
 			f.write(lines)
 			f.close()
-			if(name not in self.names):
+			if(name not in self.names()):
 				new_names.append(name)
 		f=open(self.path+"/CSVDatabaseManager.txt", "a")
 		f.write('\n'.join(new_names)+'\n')
-		self.names.append(new_names)
 		f.close()
 
 	def read(self, name):

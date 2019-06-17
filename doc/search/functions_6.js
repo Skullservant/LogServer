@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['start_5fto_5fend_5fdurations',['start_to_end_durations',['../namespaceEmitter.html#ae8385656b189ab40db076d13b858c3ea',1,'Emitter']]],
-  ['start_5fto_5fstart_5fdurations',['start_to_start_durations',['../namespaceEmitter.html#a05923b1665f6f08783c0473998bf0ad7',1,'Emitter']]]
+  ['read',['read',['../classDatabaseManagers_1_1CSVDatabaseManager.html#a81ffdfa68ab1f7bb7a109624af9ea284',1,'DatabaseManagers.CSVDatabaseManager.read()'],['../classDatabaseManagers_1_1MainDatabaseManager.html#a0bb417ad9f0504885d456a14c2a37404',1,'DatabaseManagers.MainDatabaseManager.read()']]],
+  ['reset_5fdrop_5fval',['reset_drop_val',['../namespaceConverter.html#a93378ee7854f8cfdb5fad0f9614225c6',1,'Converter']]],
+  ['reset_5fzones_5fval',['reset_zones_val',['../namespaceEmitter.html#abf4e4a18bbb96042b2ac2514432dd662',1,'Emitter']]]
 ];

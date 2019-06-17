@@ -9,23 +9,28 @@ import numpy as np
 
 csvdb=CSVDatabaseManager()
 db=MainDatabaseManager()
-file_names=csvdb.names
-table_names=db.names()
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 '''initialization of the layout: front-end implementation'''
 
-app.layout = html.Div([
+def layout():
+
+	"""
+		bief: updates the layout of the website when it gets refreshed
+		return: the new layout
+	"""
+
+	return html.Div([
 		dcc.Markdown('''Files:'''),
 		dcc.Dropdown(
                 	id='file_name',
-                	options=[{'label': name, 'value': name} for name in file_names]
+                	options=[{'label': name, 'value': name} for name in csvdb.names()]
 		),
 		dcc.Markdown('''Tables:'''),
 		dcc.Dropdown(
                 	id='tables',
-                	options=[{'label': name, 'value': name} for name in table_names]
+                	options=[{'label': name, 'value': name} for name in db.names()]
 		),
 		dcc.Markdown('''Warning: you must fill all the previous arguments to start matching!'''),
 		html.Button('Start matching', id='match_button',n_clicks=0),
@@ -40,6 +45,8 @@ app.layout = html.Div([
 		dcc.Markdown(id='add_text'), 
 		html.Button('Add', id='add_button',n_clicks=0)
 	])
+
+app.layout = layout
 
 '''callbacks: back-end implementation'''
 

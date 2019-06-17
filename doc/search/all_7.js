@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['keys',['keys',['../classDatabaseManagers_1_1MainDatabaseManager.html#a15098ca1d65aceb6195a2ee1f9391d3a',1,'DatabaseManagers::MainDatabaseManager']]]
+  ['host',['host',['../namespaceConverter.html#ac67919e1525741529277ef1cd1bb8942',1,'Converter.host()'],['../namespaceEmitter.html#a071ff4f76cd4e5ad46bb678fe9909827',1,'Emitter.host()']]]
 ];
